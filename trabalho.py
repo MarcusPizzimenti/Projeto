@@ -14,9 +14,19 @@ df_cleaned.columns = ['NaN' ,'Ponto', 'Área (ha)', 'pH(H2O)', 'P (mg/dm³)', 'K
 # Dropar a coluna NaN desnecessária
 df_cleaned = df_cleaned.drop(columns=['NaN'])
 
+# Solicitar a cultura que será cultivada, repetindo a solicitação até obter uma entrada válida
+valores_v2 = {'milho': 60, 'soja': 70, 'cana': 50}
+cultura = ""
+V2 = None
+
+while V2 is None:
+    cultura = input("Informe a cultura que será cultivada (milho, soja, cana): ").strip().lower()
+    V2 = valores_v2.get(cultura)
+    if V2 is None:
+        print("Cultura desconhecida. Por favor, escolha entre milho, soja ou cana.\n")
+
 
 # Solicitar o valor de V2 e o preço do calcário
-V2 = float(input("Insira o valor desejado de V2 (% de saturação por bases): "))
 PRNT = float(input("Insira o valor do PRNT do calcário: "))
 preco_calcario = float(input("Insira o preço do calcário (R$/tonelada): "))
 
